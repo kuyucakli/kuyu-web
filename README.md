@@ -1,6 +1,6 @@
-# Web site with react-create-app and strapi-create-app
+# Personal Web site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project's frontend was bootstrapped with [Create Next App](https://nextjs.org/docs/api-reference/create-next-app).  Backend was bootstrapped with [Create Strapi App](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/installation/cli.html#creating-a-strapi-project).
 
 ## Available Scripts
 
