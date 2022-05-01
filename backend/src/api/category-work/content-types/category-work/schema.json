@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_works",
+  "info": {
+    "singularName": "category-work",
+    "pluralName": "category-works",
+    "displayName": "Category-work",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "works": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::work.work",
+      "inversedBy": "category_works"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

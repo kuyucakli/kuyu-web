@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "works",
+  "info": {
+    "singularName": "work",
+    "pluralName": "works",
+    "displayName": "Work",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "category_works": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category-work.category-work",
+      "mappedBy": "works"
+    }
+  }
+}
