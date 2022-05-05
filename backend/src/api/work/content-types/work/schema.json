@@ -19,11 +19,38 @@
     "description": {
       "type": "richtext"
     },
-    "category_works": {
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "works"
+    },
+    "tags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::category-work.category-work",
-      "mappedBy": "works"
+      "target": "api::tag.tag",
+      "inversedBy": "works"
     }
   }
 }

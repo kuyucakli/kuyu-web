@@ -9,12 +9,15 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.1.9",
-    "@strapi/plugin-users-permissions": "4.1.9",
+    "@googlemaps/react-wrapper": "^1.1.32",
     "@strapi/plugin-i18n": "4.1.9",
-    "mysql": "2.18.1"
+    "@strapi/plugin-users-permissions": "4.1.9",
+    "@strapi/strapi": "4.1.9",
+    "mapbox-gl": "^2.8.2",
+    "mysql": "2.18.1",
+    "react-map-gl": "^7.0.11",
+    "uninstall": "^0.0.0"
   },
   "author": {
     "name": "A Strapi developer"
