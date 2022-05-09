@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Link from 'next/link'
 
-interface LayoutProps {
+
+interface ILayout {
     children: React.ReactNode,
-    path:string,
+    path: string,
+    works:[],
+    blogPosts:[],
+    places:[],
 }
 
-function Layout( { children, path }: LayoutProps ) {
+function Layout({ children, path, works, blogPosts, places }:ILayout) {
     return (
         <>
             <Head>
@@ -19,16 +23,17 @@ function Layout( { children, path }: LayoutProps ) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <header>
+            <header id="page-header" className="limited-width">
                 <Link href="/">
-                   <a><Image src="/logo_burak.svg" alt="Burak Kuyucaklı logo" width={40} height={40} /></a> 
+                    <a><Image src="/logo_burak.svg" alt="Burak Kuyucaklı logo" width={40} height={40} /></a>
                 </Link>
+                <Nav works={works} blogPosts={blogPosts} places={places}/>
             </header>
 
-            <Nav/>
+           
 
             <main className={path}>
-               {children}
+                {children}
             </main>
         </>
     )

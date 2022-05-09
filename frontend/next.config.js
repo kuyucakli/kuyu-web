@@ -11,4 +11,8 @@ module.exports = {
     locales: ["tr"],
     defaultLocale: "tr",
   },
+  images: {
+    domains: ['127.0.0.1', '127.0.0.1:1337', 'localhost'],
+  }
+
 };
