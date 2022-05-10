@@ -22,5 +22,3 @@ In the backend project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:1337/admin](http://localhost:1337/admin) to view it in the browser.
-
-
