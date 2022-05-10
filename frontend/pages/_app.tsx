@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css'
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const path = { path: router.pathname.replace('/', '')}
-  console.log(pageProps)
+  
   return (
     <Layout {...pageProps} >
       <Component {...pageProps} />

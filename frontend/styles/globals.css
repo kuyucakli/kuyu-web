@@ -56,6 +56,15 @@ button{
 }
 
 /* --- Navs --- */
+#main-nav{
+
+}
+
+#main-nav ul{
+
+}
+
+
 
 /* --- Overlays --- */
 
@@ -70,9 +79,10 @@ button{
   display:unset;
 }
 
-.overlay-full-viewport{ 
+[class ^= "overlay-full-viewport"]{ 
   width:100vw;
   height:100vh;
   top:0;
   left:0;
 }
+

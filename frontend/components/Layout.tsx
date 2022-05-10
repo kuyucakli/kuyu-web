@@ -7,14 +7,14 @@ import Link from 'next/link'
 
 
 interface ILayout {
-    children: React.ReactNode,
-    path: string,
-    works:[],
-    blogPosts:[],
-    places:[],
+    children: React.ReactNode
+    path: string
+    illustrationWorks: []
+    uiuxWorks: []
+    blogPosts: []
 }
 
-function Layout({ children, path, works, blogPosts, places }:ILayout) {
+function Layout({ children, path, illustrationWorks, uiuxWorks, blogPosts }:ILayout) {
     return (
         <>
             <Head>
@@ -27,7 +27,7 @@ function Layout({ children, path, works, blogPosts, places }:ILayout) {
                 <Link href="/">
                     <a><Image src="/logo_burak.svg" alt="Burak Kuyucaklı logo" width={40} height={40} /></a>
                 </Link>
-                <Nav works={works} blogPosts={blogPosts} places={places}/>
+                <Nav illustrationWorks={illustrationWorks} uiuxWorks={uiuxWorks} blogPosts={blogPosts} />
             </header>
 
            

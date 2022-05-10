@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
+import { formatDateForRoute }  from '../utils/date'
 
 
 interface NavProps {
-    works: [];
-    blogPosts: [];
-    places: [];
+    illustrationWorks: []
+    uiuxWorks: []
+    blogPosts: []
 }
 
-function Nav({ works, blogPosts, places }: NavProps) {
+function Nav({ illustrationWorks, uiuxWorks, blogPosts }: NavProps) {
+   
     const [isActive, setIsActive] = useState(false)
 
     function handleMenuClick() {
@@ -32,40 +34,61 @@ function Nav({ works, blogPosts, places }: NavProps) {
                 }
             </button>
 
-            <div className={`overlay-full-viewport ${isActive ? 'on' : ''}`}>
+            <div className={`overlay-full-viewport-nav ${isActive ? 'on' : ''}`}>
                 <div className="limited-width">
-
                     <header>00</header>
-                    <nav>
+                    <nav id="main-nav">
+                        <h2>Ui tasarımı ve kodlama</h2>
                         <ul>
-                            {works.map((work: any, id: number) => (
+                            {uiuxWorks.map((item: any, id: number) => (
                                 <li key={id}>
-                                    <Image alt="" src={`http://127.0.0.1:1337${work.attributes.cover.data.attributes.formats.thumbnail.url}`} width="500" height="500" />
-                                     <Link href={`/works/${work.attributes.id}`}>
-                                    {work.attributes.title}
+                                    <Link href={`/works/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        <a>
+                                            <Image alt="" src={`http://127.0.0.1:1337${item.attributes.cover.data.attributes.formats.thumbnail.url}`} width="200" height="200" />
+                                        </a>
+                                    </Link>
+                                    <Link href={`/works/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        {item.attributes.title}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
+                    </nav>
+                    <nav>
+                        <h2>Çizimler</h2>
                         <ul>
-                            {blogPosts.map((blogPost: any, id: number) => (
-                                <li key={id}>{blogPost.attributes.title}</li>
+                            {illustrationWorks.map((item: any, id: number) => (
+                                <li key={id}>
+                                    <Link href={`/works/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        <a onClick={() => setIsActive(false)}>
+                                            <Image alt="" src={`http://127.0.0.1:1337${item.attributes.cover.data.attributes.formats.thumbnail.url}`} width="200" height="200" />
+                                        </a>
+                                    </Link>
+                                    <Link href={`/works/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        {item.attributes.title}
+                                    </Link>
+                                </li>
                             ))}
-                        </ul>
-                        <ul>
-                            {places.map((place: any, id: number) => (
-                                <li key={id}>{place.attributes.title}</li>
-                            ))}
-                        </ul>
-                        <ul>
-                            <li>
-                                <Link href="/works">
-                                    <a>İşler</a>
-                                </Link>
-                            </li>
-                           
                         </ul>
                     </nav>
+                    <nav>
+                        <h2>Blog</h2>
+                        <ul>
+                            {blogPosts.map((item: any, id: number) => (
+                                <li key={id}>
+                                    <Link href={`/blog/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        <a>
+                                            <Image alt="" src={`http://127.0.0.1:1337${item.attributes.cover.data.attributes.formats.thumbnail.url}`} width="200" height="200" />
+                                        </a>
+                                    </Link>
+                                    <Link href={`/blog/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                                        {item.attributes.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    Ï
                 </div>
             </div>
         </>
@@ -75,21 +98,23 @@ function Nav({ works, blogPosts, places }: NavProps) {
 
 
 
-export const getNavData = async() => {
+export const getNavData = async () => {
 
-    const resWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?fields[0]=title&fields[1]=slug&fields[2]=description&populate[cover][fields][0]=formats`)
-    const dataWorks = await resWorks.json()
+    const resIllustrationsWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=illustrasyon&fields[0]=title&fields[1]=slug&fields[2]=description&fields[3]=publishedAt&populate[cover][fields][0]=formats`)
+    const dataIllustrationWorks = await resIllustrationsWorks.json()
 
-    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts`)
+    const resUiUxWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=ui-ux-tasarimi-ve-kodlama&fields[0]=title&fields[1]=slug&fields[2]=description&fields[3]=publishedAt&populate[cover][fields][0]=formats`)
+    const dataUiUxWorks = await resUiUxWorks.json()
+
+    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts?fields[0]=title&fields[1]=slug&fields[2]=description&fields[3]=publishedAt&populate[cover][fields][0]=formats`)
     const dataBlogPosts = await resBlogPosts.json()
 
-    const resPlaces = await fetch(`${process.env.BASE_URL_STRAPI_API}/places`)
-    const dataPlaces = await resPlaces.json()
 
-    return { 
-        places:dataPlaces.data,
-        works:dataWorks.data,
-        blogPosts:dataBlogPosts.data,
+
+    return {
+        illustrationWorks:dataIllustrationWorks.data,
+        uiuxWorks:dataUiUxWorks.data,
+        blogPosts:dataBlogPosts.data
     }
 
 }
