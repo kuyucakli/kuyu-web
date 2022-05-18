@@ -1,41 +1,63 @@
 import React, { FunctionComponent } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
-import Link from 'next/link'
+import Logo from './Logo'
+import { useRouter } from 'next/router'
+import SeoHead from '../components/SeoHead'
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
+import { Layout } from '../types'
 
 
-interface ILayout {
-    children: React.ReactNode
-    path: string
-    illustrationWorks: []
-    uiuxWorks: []
-    blogPosts: []
-}
 
-function Layout({ children, path, illustrationWorks, uiuxWorks, blogPosts }:ILayout) {
+function Layout({
+    children,
+    posts,
+    post,
+    backgroundImage = '',
+    navIndex = 0,
+    seoData
+}: Layout): JSX.Element {
+
+    const { zeroTopSpace, uiThemeAmbientColor } = post.pageTemplateSettings
+   
+    const router = useRouter()
     return (
-        <>
-            <Head>
-                <title>Kuyucakli | Ana Sayfa</title>
-                <meta name="description" content="Burak Kuyucaklı'nın kişisel web sitesi" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <LazyMotion features={domAnimation}>
 
-            <header id="page-header" className="limited-width">
-                <Link href="/">
-                    <a><Image src="/logo_burak.svg" alt="Burak Kuyucaklı logo" width={40} height={40} /></a>
-                </Link>
-                <Nav illustrationWorks={illustrationWorks} uiuxWorks={uiuxWorks} blogPosts={blogPosts} />
+            <SeoHead {...seoData} />
+
+            <header id="page-header" className={`limited-width ${uiThemeAmbientColor}`} >
+                <Logo uiThemeAmbientColor={`${uiThemeAmbientColor}`} />
+                <Nav
+                    posts={{ ...posts }}
+                    navIndex={navIndex}
+                />
             </header>
 
-           
+            <AnimatePresence
+                exitBeforeEnter
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+            >
+                <m.main
+                    key={`p${navIndex}`}
+                    className={`p${navIndex} ${zeroTopSpace?'zero-top-space':''}`}
+                    style={
+                        {
+                            backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none`,
+                        }
+                    }
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    {children}
+                </m.main>
+            </AnimatePresence>
 
-            <main className={path}>
-                {children}
-            </main>
-        </>
+            <footer id="page-footer"></footer>
+
+        </LazyMotion>
     )
 }
 

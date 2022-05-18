@@ -1,18 +1,9 @@
 import Head from 'next/head'
+import { SeoProps } from '../types'
 
-export interface ISeoProps {
-    
-        metaTitle: string
-        metaDescription: string
-        cannonicalURL?: string
-        metaImage: string
-        keywords?: string
-        preventIndexing?: boolean
-     
 
-}
 
-const SeoHead = ( {...seoData}: ISeoProps): JSX.Element => {
+const SeoHead = ( {...seoData}: SeoProps): JSX.Element => {
 
     return (
         <Head>
