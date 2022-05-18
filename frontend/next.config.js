@@ -13,6 +13,14 @@ module.exports = {
   },
   images: {
     domains: ['127.0.0.1', '127.0.0.1:1337', 'localhost'],
-  }
+  },
+
+  // Prefer loading of ES Modules over CommonJS
+  experimental: { 
+    esmExternals: true,
+    images: {
+      layoutRaw: true,
+    },
+  },
 
 };
