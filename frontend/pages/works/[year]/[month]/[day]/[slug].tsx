@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { getNavData } from '../../../../../components/Nav'
-import { getYearMonthDay }  from '../../../../../utils/date'
+import { getYearMonthDay } from '../../../../../utils/date'
+import { Card } from '../../../../../components/Card'
 
 function Post({ post }: any) {
     const router = useRouter()
@@ -10,7 +11,11 @@ function Post({ post }: any) {
     }
 
     return (
-        <div>{post[0].attributes.title}</div>
+        <>
+            {
+                post.attributes.blocks.map((block: any, i: number) => <Card key={i} data={block} />)
+            }
+        </>
     )
 
 }
@@ -21,14 +26,14 @@ export async function getStaticPaths() {
     const posts = await res.json()
 
     const paths = posts.data.map((item: any) => {
-        
+
         const publishedAt = getYearMonthDay(item.attributes.publishedAt)
-        
+
         return {
-            params: { 
-                year:publishedAt.year, 
-                month:publishedAt.month, 
-                day:publishedAt.day, 
+            params: {
+                year: publishedAt.year,
+                month: publishedAt.month,
+                day: publishedAt.day,
                 slug: `${item.attributes.slug}`,
             },
         }
@@ -39,16 +44,20 @@ export async function getStaticPaths() {
 
 // This also gets called at build time
 export async function getStaticProps({ params }: any) {
-console.log(`${process.env.BASE_URL_STRAPI_API}/works?slug=${params.slug}`);
-    const res = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[slug]=${params.slug}`)
+    const res = await fetch(`${process.env.BASE_URL_STRAPI_API}/works/?filters[slug]=${params.slug}&populate[0]=category&populate[1]=blocks.content,blocks.media.items&populate[2]=seo&populate[3]=pageTemplateSettings`)
     const post = await res.json()
-
+    const postData = post.data[0]
+    const categorySlug = postData.attributes.category.data.attributes.slug
+    const navIndex = (categorySlug === 'illustrasyon' ? 2 : 1);
+    const seoData = postData.attributes.seo
     const mainNavData = await getNavData()
 
     return {
         props: {
-            post:post.data,
-           ...mainNavData,
+            post: postData,
+            ...mainNavData,
+            seoData,
+            navIndex
         }
     }
 }
