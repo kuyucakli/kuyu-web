@@ -6,24 +6,24 @@ import { getNavData } from '../../components/Nav'
 
 const Blog: NextPage = () => {
 
-  return (
-   
-     <h1>hi Blog</h1>
-  )
+    return (
+
+        <h1>hi Blog</h1>
+    )
 }
 
 export default Blog
 
 
 export async function getStaticProps() {
+    
+    const mainNavData = await getNavData();
 
-  const mainNavData = await getNavData();
-
-  return {
-    props: {
-     ...mainNavData
-    },
-  }
+    return {
+        props: {
+            ...mainNavData
+        },
+    }
 }
 
 

@@ -17,11 +17,11 @@ export default Works
 
 export async function getStaticProps() {
 
-  const mainNavData = await getNavData();
+  const posts = await getNavData();
 
   return {
     props: {
-     ...mainNavData
+      posts:posts
     },
   }
 }
