@@ -1,0 +1,27 @@
+.dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    -webkit-transition-duration: 10ms;
+    transition-duration: 10ms;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    will-change: transform, border;
+    z-index: 999;
+    pointer-events: none;
+    opacity:0;
+    animation:0.4s anim-dot forwards;
+
+}
+
+@keyframes anim-dot{
+    0%{opacity:0}
+    50%{ transform: translate(-50%, -50%) scale(1.2)}
+    100%{opacity:1}
+}
+
