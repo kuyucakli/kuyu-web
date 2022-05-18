@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_page_template_settings",
+  "info": {
+    "displayName": "PageTemplateSettings",
+    "icon": "bullseye",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "zeroTopSpace": {
+      "type": "boolean",
+      "default": false
+    },
+    "logoColor": {
+      "type": "string",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "default": "#ffffff",
+      "maxLength": 14
+    },
+    "uiThemeAmbientColor": {
+      "type": "enumeration",
+      "enum": [
+        "dark",
+        "light"
+      ],
+      "default": "dark",
+      "required": true
+    }
+  }
+}

@@ -67,7 +67,8 @@
     "pageTemplateSettings": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.page-template-settings"
+      "component": "shared.page-template-settings",
+      "required": true
     }
   }
 }

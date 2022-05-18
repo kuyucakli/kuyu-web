@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_image_contents",
+  "info": {
+    "displayName": "Media-content",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

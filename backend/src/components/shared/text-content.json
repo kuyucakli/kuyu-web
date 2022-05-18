@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_text_contents",
+  "info": {
+    "displayName": "Text-content",
+    "icon": "align-center",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

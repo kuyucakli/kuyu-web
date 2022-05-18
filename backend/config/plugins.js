@@ -5,4 +5,8 @@ module.exports = {
     resolve: './src/plugins/map-field'
   },
 
+  seo: {
+    enabled: true,
+  },
+
 }
