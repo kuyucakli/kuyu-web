@@ -17,17 +17,11 @@
       "unique": true,
       "required": true
     },
-    "content": {
-      "type": "richtext"
-    },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "blog_posts"
-    },
-    "description": {
-      "type": "text"
     },
     "cover": {
       "type": "media",
@@ -56,6 +50,24 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "blog_posts"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "block.card",
+        "block.hero"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "required": true
+    },
+    "pageTemplateSettings": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.page-template-settings"
     }
   }
 }

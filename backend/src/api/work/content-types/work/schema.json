@@ -16,20 +16,6 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "richtext"
-    },
-    "media": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "cover": {
       "type": "media",
       "multiple": false,
@@ -55,6 +41,24 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "block.card",
+        "block.hero"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "required": true
+    },
+    "pageTemplateSettings": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.page-template-settings"
     }
   }
 }
