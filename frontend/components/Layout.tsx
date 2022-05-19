@@ -18,14 +18,17 @@ function Layout({
 }: Layout): JSX.Element {
 
     const { zeroTopSpace, uiThemeAmbientColor } = post.pageTemplateSettings
-   
     const router = useRouter()
+    const headerClass = `limited-width ${uiThemeAmbientColor}`
+    const mainClass = `p${navIndex} ${zeroTopSpace ? 'zero-top-space' : ''} ${uiThemeAmbientColor}`
+    const mainStyle =  { backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none`}
+
     return (
         <LazyMotion features={domAnimation}>
 
             <SeoHead {...seoData} />
 
-            <header id="page-header" className={`limited-width ${uiThemeAmbientColor}`} >
+            <header id="page-header" className={headerClass} >
                 <Logo uiThemeAmbientColor={`${uiThemeAmbientColor}`} />
                 <Nav
                     posts={{ ...posts }}
@@ -40,12 +43,8 @@ function Layout({
             >
                 <m.main
                     key={`p${navIndex}`}
-                    className={`p${navIndex} ${zeroTopSpace?'zero-top-space':''}`}
-                    style={
-                        {
-                            backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none`,
-                        }
-                    }
+                    className={mainClass}
+                    style={mainStyle}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
