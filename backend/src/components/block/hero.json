@@ -17,6 +17,10 @@
     },
     "layout": {
       "type": "json"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 255
     }
   }
 }

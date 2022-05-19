@@ -4,15 +4,19 @@ import styles from "/styles/Hero.module.css"
 
 export const Hero = ({ data }: HeroProps): JSX.Element => {
     
-    const { layout, media, title } = data
-    const { classes, wrapperStyle, mediaContainerStyle, titleStyle } = layout
+    const { layout, media, title, description } = data
+    const { classes, wrapperStyle, mediaContainerStyle, contentStyle } = layout
     const { data: mediaItems } = media.items
 
     return (
-        <section className={styles.hero}>
+        <div className={`${styles.hero} ${styles[classes]}`}>
             <SliderMediaItems items={mediaItems} style={{ ...mediaContainerStyle }} mediaSize={{ layout: 'fill', objectFit: 'cover' }} />
-            <h1>{title}</h1>
-        </section>
+            <section style={{...contentStyle}}>
+                 <h1>{title}</h1>
+                 <p>{description}</p>
+            </section>
+           
+        </div>
     )
 }
 
