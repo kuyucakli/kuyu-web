@@ -1,35 +1,11 @@
 import type { NextPage } from 'next'
 import { getNavData } from '../components/Nav'
-import { useState, useEffect } from 'react'
+import { useWeather } from '../hooks/useWeather'
 
 
 const Home: NextPage = () => {
 
-  const [weather, setWeather] = useState({ celcius: '', description: '' })
-
-  useEffect(() => {
-
-    const getWeather = async () => {
-
-      try {
-        const resp = await fetch('https://apix.openweathermap.org/data/2.5/weather?lat=40.6202&lon=29.2254&&units=metric&appid=d09b0cef5df5712b1c4eca1f6166811d*****')
-        const data = await resp?.json()
-        setWeather({
-          celcius: data.main?.tem,
-          description: messages[data.weather][0]
-        })
-      } catch (err) {
-        setWeather({
-          celcius: '23',
-          description: messages['clear sky'][0]
-        })
-      }
-
-    }
-
-    getWeather()
-
-  }, [])
+  const weather = useWeather()
 
   return (
     <section className="ui-dark limited-width" itemScope itemType="http://schema.org/Article">
