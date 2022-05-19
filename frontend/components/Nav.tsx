@@ -64,12 +64,12 @@ export default function Nav({  navIndex, posts }: NavProps): JSX.Element {
                 {isActive
                     ?
                     <span className="icon material-symbols-sharp">
-                        arrow_back
+                        close
                     </span>
                     :
-                    ''
+                    <span className="t-4 page-index">0{`${navIndex}`}</span>
                 }
-                <span className="t-4">0{`${navIndex}`}</span>
+                
                 <strong className="t-6">menü</strong>
             </button>
 
