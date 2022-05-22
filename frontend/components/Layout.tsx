@@ -1,11 +1,8 @@
-import React, { FunctionComponent } from 'react'
 import Nav from '../components/Nav'
 import Logo from './Logo'
-import { useRouter } from 'next/router'
 import SeoHead from '../components/SeoHead'
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
 import { Layout } from '../types'
-
 
 
 function Layout({
@@ -17,11 +14,15 @@ function Layout({
     seoData
 }: Layout): JSX.Element {
 
+    /* If no post or Error pages */
+    if(!post){
+        return <>{children}</>
+    }
+
     const { zeroTopSpace, uiThemeAmbientColor } = post.pageTemplateSettings
-    const router = useRouter()
     const headerClass = `limited-width ${uiThemeAmbientColor}`
     const mainClass = `p${navIndex} ${zeroTopSpace ? 'zero-top-space' : ''} ${uiThemeAmbientColor}`
-    const mainStyle =  { backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none`}
+    const mainStyle = { backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none` }
 
     return (
         <LazyMotion features={domAnimation}>
@@ -34,6 +35,7 @@ function Layout({
                     posts={{ ...posts }}
                     navIndex={navIndex}
                 />
+
             </header>
 
             <AnimatePresence
@@ -59,6 +61,7 @@ function Layout({
         </LazyMotion>
     )
 }
+
 
 
 export default Layout
