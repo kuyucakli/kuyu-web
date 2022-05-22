@@ -11,7 +11,7 @@ export interface IPost {
     pageTemplateSettings: {
         zeroTopSpace: boolean
         logoColor: string
-        uiThemeAmbientColor:string
+        uiThemeAmbientColor: string
     }
     cover: {
         formats: {
@@ -36,12 +36,13 @@ export interface NavCategoricalList {
 export interface NavSection {
     items: IPost[]
     linkBaseUrl: string
-    slidesPerView: number
-    showCustomCursor: React.MouseEventHandler
-    hideCustomCursor: React.MouseEventHandler
+    slidesPerViewSm: number
+    slidesPerViewLg: number
     showCaption?: boolean
     lgDirection?: 'vertical' | 'horizontal'
-    handleMenuClose: React.MouseEventHandler
+    handleMenuToggle: React.MouseEventHandler
+    categoryTitle: string
+    className?: string
 }
 
 
@@ -96,46 +97,47 @@ export interface StaticDetailPagePaths {
     fallback: boolean
 }
 
-export interface CardProps{
-    media:{
+export interface CardProps {
+    media: {
         formats: {
             thumbnail: {}
         }
     }
-    title:string
-    content:string
+    title: string
+    content: string
 
 }
 
-export interface HeroProps{
+export interface HeroProps {
     data: {
         layout: {
             classes: string,
             wrapperStyle: { [key: string]: string },
             mediaContainerStyle: { [key: string]: string },
-            titleStyle: { [key: string]: string },
+            contentStyle: { [key: string]: string },
         }
-        title:string,
+        title: string,
+        description: string,
         media: {
             items: {
                 data: IMediaItem[]
             }
         }
     }
-    
+
 }
 
 
 export interface IMediaItems {
     items: IMediaItem[]
     style?: object
-    mediaSize?: {layout:'fill', objectFit:'cover'} | {}
+    mediaSize?: { layout: 'fill', objectFit: 'cover' } | {}
 }
 
 export interface IMediaItem {
     id: number
     style?: {}
-    mediaSize?: {layout:'fill', objectFit:'cover'} | {}
+    mediaSize?: { layout: 'fill', objectFit: 'cover' } | {}
     attributes: {
         caption: string
         alternativeText: string
