@@ -9,7 +9,6 @@ import { StaticDetailPageOutProps, StaticDetailPageParams, StaticDetailPagePaths
 
 function Post({ post }: StaticDetailPageProps) {
 
-
     const router = useRouter()
 
     if (router.isFallback) {
