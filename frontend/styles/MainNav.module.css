@@ -1,0 +1,166 @@
+/* --- Main Nav --- */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 160px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    animation: anim-main-nav-off 2s forwards reverse;
+  }
+  
+  .main-nav nav {
+    transition: transform 0.6s, opacity 0.4s;
+    transform: translate(-100%, 0);
+    opacity: 0;
+  
+  }
+  
+  @keyframes anim-main-nav-off {
+    0% {
+      width: 0;
+      height: 0;
+    }
+  
+    89% {
+      width: 0;
+      height: 0;
+    }
+  
+    90% {
+      background-color: rgba(0, 0, 0, 0);
+      width: 100vw;
+      height: 100vh;
+    }
+  
+    100% {
+      background-color: rgba(0, 0, 0, 0.8);
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+  
+  
+  .main-nav.on {
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    animation: anim-main-nav-on 2s forwards;
+  }
+  
+  .main-nav.on nav {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  
+  @keyframes anim-main-nav-on {
+    0% {
+      width: 100vw;
+      height: 100vh
+    }
+  
+    19% {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  
+    20% {}
+  
+    100% {
+      background-color: rgba(0, 0, 0, 0.9);
+      width: 100vw;
+      height: 100vh
+    }
+  }
+  
+  .main-nav .outer-swiper{
+    height:300px;
+    bottom:0;
+  }
+  
+  .main-nav nav {
+    position: relative;
+  }
+  
+  
+  
+  .main-nav figure {
+    height: 100%;
+  }
+  
+  .main-nav figure>a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .main-nav figure img {
+    object-fit: cover;
+  }
+  
+  .main-nav figcaption {
+    position: absolute;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  
+  }
+  
+  .main-nav h2 {
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  
+  
+  .main-nav .outer-swiper nav {
+    
+  }
+  
+  .main-nav .outer-swiper nav .inner-swiper{
+   
+  }
+
+
+  @media screen and (min-width:768px) {
+  
+    .main-nav {
+      z-index: var(--z-main-nav);
+    }
+  
+    .main-nav nav:hover,
+    .main-nav nav a:hover {
+      cursor: none !important;
+    }
+  
+    .main-nav nav>h2 {
+      position: absolute;
+      top: 48px;
+      left: 48px;
+      z-index: 2;
+    }
+  
+    .main-nav .outer-swiper {
+      --half-auto-margin: calc((100vw - var(--limit-width-1)) / 2);
+      --scrollable-width: calc(var(--limit-width-1) + var(--half-auto-margin));
+      width: var(--scrollable-width);
+      height:unset;
+      max-width: unset;
+      transform: translateX(var(--half-auto-margin));
+    }
+  
+    .main-nav .outer-swiper .swiper-slide{
+      width:calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    }
+  
+    .main-nav .inner-swiper {
+      width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+      height: 600px;
+    }
+  
+  
+  
+  }
