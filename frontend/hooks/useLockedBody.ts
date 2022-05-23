@@ -17,9 +17,11 @@ function useLockedBody(initialLocked = false): ReturnType {
     // Save initial body style
     const originalOverflow = document.body.style.overflow
     const originalPaddingRight = document.body.style.paddingRight
+    const originalOverscrollBehaviorX = document.body.style.overscrollBehaviorX
 
     // Lock body scroll
     document.body.style.overflow = 'hidden'
+    document.body.style.overscrollBehaviorX = 'none';
 
     // Get the scrollBar width
     const root = document.getElementById('___gatsby') // or root
@@ -32,6 +34,7 @@ function useLockedBody(initialLocked = false): ReturnType {
 
     return () => {
       document.body.style.overflow = originalOverflow
+      document.body.style.overscrollBehaviorX = originalOverscrollBehaviorX
 
       if (scrollBarWidth) {
         document.body.style.paddingRight = originalPaddingRight
