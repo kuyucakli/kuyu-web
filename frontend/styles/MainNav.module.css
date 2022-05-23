@@ -1,166 +1,320 @@
 /* --- Main Nav --- */
+/* --- main-nav > outer-swiper > swiper-slide > nav > h2 + inner-swiper --- */
+
 .main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 160px;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  animation: anim-main-nav-off 2s forwards reverse;
+}
+
+.main-nav.on {
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  animation: anim-main-nav-on 2s forwards;
+}
+
+.main-nav h2 {
+  padding-left: 16px;
+  padding-bottom: 8px;
+}
+
+.main-nav figure {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  height: 100%;
+}
+
+.main-nav figure>a {
+  position: relative;
+  flex-grow: 1;
+}
+
+.main-nav figure img {
+  object-fit: cover;
+}
+
+.main-nav figcaption {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-bottom: 16px;
+}
+
+
+
+.main-nav .section-ui-ux [class*="meta-descr"],
+.main-nav .section-blog [class*="meta-descr"] {
+  display: none;
+}
+
+.main-nav .section-drawings figcaption {
+  display: none;
+}
+
+.main-nav .outer-swiper {
+  transition: transform 0.6s, opacity 0.4s;
+  transform: translate(0, 10%);
+  position: absolute;
+  height: 90vh;
+  bottom: 0;
+  opacity: 0;
+}
+
+.main-nav [class=wrapper-slide-directional-buttons] {
+  display: none;
+}
+
+.main-nav.on .outer-swiper {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.main-nav .outer-swiper > div > div {
+  height: 50vh;
+}
+
+.main-nav .outer-swiper nav {
+  opacity: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav.on .outer-swiper nav {
+  opacity: 1;
+}
+
+.main-nav .inner-swiper {
+  width: 100vw;
+  flex: 1 0 auto;
+}
+
+
+
+
+@keyframes anim-main-nav-on {
+  0% {
+    width: 100vw;
+    height: 100vh
+  }
+
+  19% {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  20% {}
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+
+  }
+}
+
+@keyframes anim-main-nav-off {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  89.9% {
+    width: 0;
+    height: 0;
+
+  }
+
+  90% {
     background-color: rgba(0, 0, 0, 0);
-    color: white;
-    animation: anim-main-nav-off 2s forwards reverse;
+    width: 100vw;
+    height: 100vh;
+
   }
-  
-  .main-nav nav {
-    transition: transform 0.6s, opacity 0.4s;
-    transform: translate(-100%, 0);
-    opacity: 0;
-  
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+
   }
-  
-  @keyframes anim-main-nav-off {
-    0% {
-      width: 0;
-      height: 0;
-    }
-  
-    89% {
-      width: 0;
-      height: 0;
-    }
-  
-    90% {
-      background-color: rgba(0, 0, 0, 0);
-      width: 100vw;
-      height: 100vh;
-    }
-  
-    100% {
-      background-color: rgba(0, 0, 0, 0.8);
-      width: 100vw;
-      height: 100vh;
-    }
+}
+
+
+
+@media screen and (min-width:768px) {
+
+  .main-nav {
+    z-index: var(--z-main-nav);
   }
-  
-  
-  .main-nav.on {
+
+  .main-nav h2 {
+    padding: 0;
+
+  }
+
+  .main-nav figure {
+    flex-direction: row;
+  }
+
+  .main-nav figure>a {
+    height: 100%;
+  }
+
+  .main-nav .section-ui-ux [class*="meta-descr"],
+  .main-nav .section-blog [class*="meta-descr"] {
+    display: unset;
+  }
+
+
+  .main-nav figcaption {
     top: 0;
-    left: 0;
-    overflow-y: auto;
-    animation: anim-main-nav-on 2s forwards;
+    right: 0;
+    padding: 0 64px 0 16px;
+    opacity: 0;
+    transition: all 0.4s 0.2s;
+    flex: 0 1 30%;
+    height: auto;
   }
-  
-  .main-nav.on nav {
-    transform: translate(0, 0);
+
+  .main-nav .section-drawings figcaption {
+    display: unset;
+  }
+
+  .main-nav figcaption p {
+    margin-top: 8px;
+  }
+
+  .main-nav  [class*="swiper-slide-active"] [class*="swiper-slide-active"] figcaption {
     opacity: 1;
   }
-  
-  @keyframes anim-main-nav-on {
-    0% {
-      width: 100vw;
-      height: 100vh
-    }
-  
-    19% {
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-  
-    20% {}
-  
-    100% {
-      background-color: rgba(0, 0, 0, 0.9);
-      width: 100vw;
-      height: 100vh
-    }
+
+  .main-nav [class=wrapper-slide-directional-buttons] {
+    opacity: 0;
+    transition: opacity 0.4s 10.6s;
   }
-  
-  .main-nav .outer-swiper{
-    height:300px;
-    bottom:0;
-  }
-  
-  .main-nav nav {
-    position: relative;
-  }
-  
-  
-  
-  .main-nav figure {
-    height: 100%;
-  }
-  
-  .main-nav figure>a {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .main-nav figure img {
-    object-fit: cover;
-  }
-  
-  .main-nav figcaption {
-    position: absolute;
-    bottom: 64px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  
-  }
-  
-  .main-nav h2 {
+
+
+  .main-nav [class*="swiper-slide-active"] [class=wrapper-slide-directional-buttons] {
     display: flex;
+    position: absolute;
     flex-direction: column;
-  
+    left: 70%;
+    bottom: 24px;
+    opacity: 1;
   }
-  
-  
-  
-  .main-nav .outer-swiper nav {
-    
+
+  .main-nav  [class*="swiper-slide-active"] [class=btn-next-item] {
+    width: 48px;
+    height: 48px;
+    z-index: 1000;
+    transition: opacity 0.4s;
   }
-  
-  .main-nav .outer-swiper nav .inner-swiper{
-   
+
+  .main-nav [disabled][class=btn-next-item] {
+    opacity: 0.5;
+  }
+
+  .main-nav [class=btn-next-item] span {
+    color: white;
+    font-size: 24px;
+  }
+
+  .main-nav .outer-swiper {
+    position: static;
+    --half-auto-margin: calc((100vw - 768px) / 2);
+    --scrollable-width: calc(768px + var(--half-auto-margin));
+    width: var(--scrollable-width);
+    height: unset;
+    max-width: unset;
+    transform: translate(20%, 160px);
+
+  }
+
+  .main-nav.on .outer-swiper {
+    transform: translate(var(--half-auto-margin), 160px);
+  }
+
+  .main-nav .outer-swiper > div > div {
+    width: calc((768px - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    height: calc(50vh + 56px);
+
+  }
+
+  .main-nav .inner-swiper {
+    width: calc((768px - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    height: 50vh;
+
+  }
+
+  .main-nav .outer-swiper > div > div h2 {
+    opacity: 0.4;
+    transform: translateX(8%);
+    transition: opacity 0.4s, transform 0.4s;
+    margin-bottom: 8px;
+  }
+
+  .main-nav .outer-swiper > div >  [class*="swiper-slide-active"] h2 {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  .main-nav .outer-swiper > div > div figure {
+    opacity: 0.6;
+    transition: opacity 0.4s;
+  }
+
+  .main-nav .outer-swiper > div >  [class*="swiper-slide-active"] figure {
+    opacity: 1;
+  }
+
+  .main-nav nav {
+    opacity: 1;
+    height: 100%;
+  }
+
+  .main-nav.on nav {
+
+    opacity: 1;
   }
 
 
-  @media screen and (min-width:768px) {
-  
-    .main-nav {
-      z-index: var(--z-main-nav);
-    }
-  
-    .main-nav nav:hover,
-    .main-nav nav a:hover {
-      cursor: none !important;
-    }
-  
-    .main-nav nav>h2 {
-      position: absolute;
-      top: 48px;
-      left: 48px;
-      z-index: 2;
-    }
-  
-    .main-nav .outer-swiper {
-      --half-auto-margin: calc((100vw - var(--limit-width-1)) / 2);
-      --scrollable-width: calc(var(--limit-width-1) + var(--half-auto-margin));
-      width: var(--scrollable-width);
-      height:unset;
-      max-width: unset;
-      transform: translateX(var(--half-auto-margin));
-    }
-  
-    .main-nav .outer-swiper .swiper-slide{
-      width:calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
-    }
-  
-    .main-nav .inner-swiper {
-      width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
-      height: 600px;
-    }
-  
-  
-  
+}
+
+
+
+
+@media screen and (min-width:1200px) {
+  .main-nav .outer-swiper {
+    --half-auto-margin: calc((100vw - var(--limit-width-1)) / 2);
+    --scrollable-width: calc(var(--limit-width-1) + var(--half-auto-margin));
+    width: var(--scrollable-width);
+    transform: translate(20%, 160px);
+
   }
+
+  .main-nav.on .outer-swiper {
+    transform: translate(var(--half-auto-margin), 160px);
+  }
+
+  .main-nav .outer-swiper > div > div {
+    width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    height: calc(50vh + 56px);
+
+  }
+
+  .main-nav .inner-swiper {
+    width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    height: 50vh;
+
+  }
+
+}
+
+/* --- Main Nav  Ends --- */

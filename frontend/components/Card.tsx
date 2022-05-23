@@ -15,9 +15,10 @@ export const Card = ({ data }: ICardData): JSX.Element => {
 
     return (
         <section style={{ ...wrapperStyle }} className={`${classes} ${styles.card}`}>
-
-            <SliderMediaItems items={mediaItems} style={mediaContainerStyle} />
-
+            {
+                mediaItems && <SliderMediaItems items={mediaItems} style={mediaContainerStyle} />
+            }
+            
             <h1 style={{ ...titleStyle }}>
                 {title}
             </h1>

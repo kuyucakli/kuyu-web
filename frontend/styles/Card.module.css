@@ -1,3 +1,44 @@
-.card .media img {
-    
+.card{
+    padding:0 24px; 
+}
+
+.card img {
+    object-fit: cover;
+}
+
+.card p{
+    font-size:var(--t-s-6);
+    line-height:var(--t-lh-6);
+    letter-spacing:var(--t-ls-6); 
+}
+
+.card[class*=big-title] h1{
+    font-size:var(--t-s-1);
+    line-height:var(--t-lh-1);
+    letter-spacing:var(--t-ls-1); 
+}
+
+.card h1{
+    font-size:var(--t-s-3);
+    line-height:var(--t-lh-3);
+    letter-spacing:var(--t-ls-3);
+}
+
+.card figcaption{
+    margin-top:8px;
+    text-align:center;
+    font-size:var(--t-s-7);
+    line-height:var(--t-lh-7);
+    letter-spacing:var(--t-ls-7);
+}
+
+
+@media screen and ( max-width:768px ){
+    .card *{
+        grid-area:auto / 1 / auto / span 12!important;
+    }
+}
+
+@media screen and ( min-width:1200px ){
+    .card{ padding:0; }
 }

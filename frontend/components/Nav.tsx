@@ -11,6 +11,7 @@ import { useSwiper } from 'swiper/react'
 import { getYearMonthDay } from '../utils/date'
 import useLockedBody from '../hooks/useLockedBody'
 import useOnClickOutside from '../hooks/useOnClickOutside'
+import styles from "/styles/MainNav.module.css"
 
 export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
 
@@ -47,7 +48,7 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
 
             <div
                 ref={refMainNav}
-                className={`main-nav ${isActive ? 'on' : ''}`}
+                className={`${styles['main-nav']} ${isActive ? styles.on : ''}`}
             >
                 <Swiper
                     preventInteractionOnTransition={true}
@@ -71,7 +72,7 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
 
                     modules={[Mousewheel, Keyboard]}
                     direction="vertical"
-                    className="outer-swiper"
+                    className={styles['outer-swiper']}
                     breakpoints={{
                         768: {
                             direction: 'horizontal',
@@ -89,7 +90,7 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                             slidesPerViewLg={1}
                             handleMenuToggle={handleMenuToggle}
                             categoryTitle="01 Ui-Ux"
-                            className="section-ui-ux"
+                            className={styles['section-ui-ux']}
                         />
                     </SwiperSlide>
                     <SwiperSlide>
@@ -101,7 +102,7 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                             lgDirection={"vertical"}
                             handleMenuToggle={handleMenuToggle}
                             categoryTitle="02 Çizim"
-                            className="section-drawings"
+                            className={styles['section-drawings']}
                         />
                     </SwiperSlide>
                     <SwiperSlide>
@@ -112,7 +113,7 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                             slidesPerViewLg={1}
                             handleMenuToggle={handleMenuToggle}
                             categoryTitle="03 Blog"
-                            className="section-blog"
+                            className={styles['section-blog']}
                         />
                     </SwiperSlide>
                 </Swiper>
@@ -143,7 +144,7 @@ const NavSection = (
             <h2 className="t-4 lg-t-3 t-bld">{categoryTitle}</h2>
             <Swiper
                 preventInteractionOnTransition={true}
-                className="inner-swiper"
+                className={styles['inner-swiper']}
                 spaceBetween={16}
                 slidesPerView={slidesPerViewSm}
                 mousewheel={false}
@@ -167,7 +168,7 @@ const NavSection = (
                                 </a>
                             </Link>
                             {showCaption &&
-                                <Figcaption linkBaseUrl={linkBaseUrl} item={item} />
+                                <Figcaption linkBaseUrl={linkBaseUrl} item={item} onLinkClick={handleMenuToggle}/>
                             }
                         </figure>
                     </SwiperSlide>
@@ -178,10 +179,10 @@ const NavSection = (
 
 }
 
-const Figcaption = ({ linkBaseUrl, item }: any) => {
-    const { publisheAt, title, tags, seo, slug } = item.attributes
+const Figcaption = ({ linkBaseUrl, item, onLinkClick }: any) => {
+    const { publishedAt, title, tags, seo, slug } = item.attributes
     const { month, year } = getYearMonthDay(item.attributes.publishedAt)
-    const formattedDate = formatDateForRoute(publisheAt)
+    const formattedDate = formatDateForRoute(publishedAt)
     const url = `${linkBaseUrl}/${formattedDate}/${slug}`
 
     const tagsArr = tags.data.map((item: any) => item.attributes.name)
@@ -191,7 +192,7 @@ const Figcaption = ({ linkBaseUrl, item }: any) => {
     return (
         <figcaption>
             <Link href={url}>
-                <a className="t-5 t-mdm">{title}</a>
+                <a className="t-5 t-mdm" onClick={onLinkClick}>{title}</a>
             </Link>
             <p>
                 <span className="t-7 mata-info">{metaInfo}</span>

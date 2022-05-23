@@ -10,7 +10,7 @@ export const Hero = ({ data }: HeroProps): JSX.Element => {
 
     return (
         <div className={`${styles.hero} ${styles[classes]}`}>
-            <SliderMediaItems items={mediaItems} style={{ ...mediaContainerStyle }} mediaSize={{ layout: 'fill', objectFit: 'cover' }} />
+            <SliderMediaItems items={mediaItems} style={{ ...mediaContainerStyle }} imgSize="raw"/>
             <section style={{...contentStyle}}>
                  <h1>{title}</h1>
                  <p>{description}</p>
