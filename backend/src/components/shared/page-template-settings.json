@@ -20,10 +20,12 @@
     "uiThemeAmbientColor": {
       "type": "enumeration",
       "enum": [
-        "dark",
-        "light"
+        "dark-ui",
+        "light-ui",
+        "dark-ui-header",
+        "light-ui-header"
       ],
-      "default": "dark",
+      "default": "light-ui",
       "required": true
     }
   }
