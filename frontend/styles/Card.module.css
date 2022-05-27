@@ -1,9 +1,14 @@
 .card{
     padding:0 24px; 
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows:repeat(4, min-content);
+    grid-gap:16px;
 }
 
 .card img {
     object-fit: cover;
+    height:100%;
 }
 
 .card p{
@@ -19,9 +24,9 @@
 }
 
 .card h1{
-    font-size:var(--t-s-3);
-    line-height:var(--t-lh-3);
-    letter-spacing:var(--t-ls-3);
+    font-size:var(--t-s-5);
+    line-height:var(--t-lh-5);
+    letter-spacing:var(--t-ls-5);
 }
 
 .card figcaption{
@@ -30,6 +35,23 @@
     font-size:var(--t-s-7);
     line-height:var(--t-lh-7);
     letter-spacing:var(--t-ls-7);
+}
+
+/* --- CardGroup  --- */
+.card-group{
+    display:grid;
+    grid-template-columns:repeat(12, 1fr);
+}
+
+.card-group > h1{
+    text-align: center;
+    margin-bottom:32px;
+    grid-area:auto / 1 / auto / -1;
+}
+
+
+.card-group .card{
+    grid-area:auto / 1 / auto / -1;
 }
 
 

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <section className="ui-dark limited-width" itemScope itemType="http://schema.org/Article">
       <h1 className="t-1 t-bld">{`${weather.celcius}`}°C </h1>
-      <p className="t-6 t-mdm">Bugün Kadıköy {`${weather.description}`}. Ben, kullanıcı deneyimi ve arayüzü ( ui-ux ) tasarımı, kodlaması ve illustrasyon işleri ile uğraşıyorum...</p>
+      <p className="t-6 t-mdm">Bugün Kadıköy {`${weather.description}`}. Ben büyük olasılıkla kompüterimde ui-ux tasarlamakla, kodlamasını yapmakla meşgulümdür. Değilse, bir yolucluk esnasında çizim yapıyorumdur.</p>
       <p itemProp="author" itemScope itemType="http://schema.org/Organization">
         <span itemProp="name" className="t-7">Burak Kuyucaklı</span>
       </p>

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useSwiper } from 'swiper/react';
 
-export const SliderMediaItems = ({ items, style }: IMediaItems): JSX.Element => {
+export const SliderMediaItems = ({ items, style, imgSize='medium' }: IMediaItems): JSX.Element => {
     
     return (
         <div style={{ ...style }} >
@@ -18,7 +18,7 @@ export const SliderMediaItems = ({ items, style }: IMediaItems): JSX.Element => 
                             {
                                 items.map((item: IMediaItem, i) =>
                                     <SwiperSlide key={item.id}>
-                                        <MediaItem  {...item} />
+                                        <MediaItem  {...item} imgSize={imgSize}/>
                                     </SwiperSlide>
                                 )
                             }
@@ -26,7 +26,7 @@ export const SliderMediaItems = ({ items, style }: IMediaItems): JSX.Element => 
                         </Swiper>
                     )
                     :
-                    <MediaItem  {...items[0]} />
+                    <MediaItem  {...items[0]} imgSize={imgSize}/>
 
             }
 
@@ -48,14 +48,19 @@ function SlideButton() {
 
 
 export const MediaItem = (props: IMediaItem): JSX.Element => {
-    const {style} = props
-    const { formats, caption, alternativeText } = props.attributes
-    const { url, width, height } = formats.large
+    const {style, imgSize} = props
+    const { formats, caption, alternativeText  } = props.attributes
+    var { url, width, height } = props.attributes // get raw file data
+   
+    if( formats && imgSize !== 'raw' ){
+        var {url, width, height} = formats[imgSize]
+      
+    }
 
     return (
         <figure style={style}>
-            <Image alt={alternativeText} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} width={width}
-                height={height} layout="raw"
+            <Image alt={alternativeText} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} width={width || 500}
+                height={height || 500} layout="raw"
             />
             <figcaption>{caption}</figcaption>
         </figure>

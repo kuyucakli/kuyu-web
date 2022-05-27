@@ -11,9 +11,11 @@ interface ILogo {
 
 const Logo = ({ uiThemeAmbientColor }: ILogo): JSX.Element => {
 
+    const logoFile = `/logo_${uiThemeAmbientColor.includes('dark-ui') ? 'white' : 'black'}.svg`
+
     const logo = <Link href="/" >
         <a className="logo">
-            <Image src={`/logo_${uiThemeAmbientColor === 'dark' ? 'white' : 'black'}.svg`} alt="Burak Kuyucaklı logo" width={40} height={40} />
+            <Image src={logoFile} alt="Burak Kuyucaklı logo" width={40} height={40} />
         </a>
     </Link>
 

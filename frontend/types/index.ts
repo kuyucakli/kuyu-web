@@ -131,19 +131,34 @@ export interface HeroProps {
 export interface IMediaItems {
     items: IMediaItem[]
     style?: object
-    mediaSize?: { layout: 'fill', objectFit: 'cover' } | {}
+    imgSize?:'large' | 'medium' | 'small' | 'raw'
 }
 
 export interface IMediaItem {
     id: number
     style?: {}
-    mediaSize?: { layout: 'fill', objectFit: 'cover' } | {}
+    imgSize:'large' | 'medium' | 'small' | 'raw'
     attributes: {
         caption: string
         alternativeText: string
+        url:string
+        width:number
+        height:number
         formats: {
             thumbnail: {
                 url: string
+                width:number
+                height:number
+            },
+            small: {
+                url: string,
+                width: number,
+                height: number
+            },
+            medium: {
+                url: string,
+                width: number,
+                height: number
             },
             large: {
                 url: string,
@@ -157,23 +172,25 @@ export interface IMediaItem {
 
 
 export interface ICardData {
-    data: {
+        __component: string
         layout: {
             classes: string,
             wrapperStyle: { [key: string]: string },
             mediaContainerStyle: { [key: string]: string },
             titleStyle: { [key: string]: string },
             contentStyle: { [key: string]: string },
-        }
-        content: {
-            title: string,
-            description: any
-        }
+        }     
+        title: string
+        description: string  
         media: {
-            items: {
                 data: IMediaItem[]
-            }
         }
+}
+
+export interface ICardListData {
+    data: {
+       title: string
+       cards: ICardData[]
     }
 }
 

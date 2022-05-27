@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { getNavData } from '../../../../../components/Nav'
 import { getYearMonthDay } from '../../../../../utils/date'
-import { Card } from '../../../../../components/Card'
+import { Card, CardGroup} from '../../../../../components/Card'
 import { Hero } from '../../../../../components/Hero'
 import { StaticDetailPageOutProps, StaticDetailPageParams, StaticDetailPagePaths, StaticDetailPageProps } from '../../../../../types'
-
+import { ICardData, ICardListData } from '../../../../../types'
 
 
 function Post({ post }: StaticDetailPageProps) {
@@ -21,12 +21,17 @@ function Post({ post }: StaticDetailPageProps) {
                 post.blocks.map((block: any, i: number) => {
 
                     const type = block['__component']
+                    
 
-                    if (type === 'block.card') {
-                        return <Card key={i} data={block} />
+                    if (type === 'shared.card') {
+                        return <Card key={i} {...block} />
                     } else if (type === 'block.hero') {
                         return <Hero key={i} data={block} />
+                    }else if (type === 'block.card-group') {
+                        return <CardGroup key={i} data={block}/>
                     }
+
+                  
 
 
                 })
@@ -64,7 +69,7 @@ export async function getStaticPaths(): Promise<StaticDetailPagePaths> {
 
 // This also gets called at build time
 export async function getStaticProps({ params }: StaticDetailPageParams): Promise<StaticDetailPageOutProps> {
-    const res = await fetch(`${process.env.BASE_URL_STRAPI_API}/works/?filters[slug]=${params.slug}&populate[0]=category&populate[1]=blocks.content,blocks.media.items&populate[2]=seo&populate[3]=pageTemplateSettings`)
+    const res = await fetch(`${process.env.BASE_URL_STRAPI_API}/works/?filters[slug]=${params.slug}&populate[0]=category&populate[1]=blocks.media.items&populate[2]=seo&populate[3]=pageTemplateSettings&populate[4]=blocks.cards,blocks.cards.media`)
     const post = await res.json()
     const postData = post.data[0]
     const categorySlug = postData.attributes.category.data.attributes.slug

@@ -1,4 +1,4 @@
-import { ICardData } from "../types"
+import { ICardData, ICardListData } from "../types"
 import styles from "/styles/Card.module.css"
 import ReactMarkdown from 'react-markdown'
 import 'swiper/css'
@@ -6,12 +6,10 @@ import 'swiper/css'
 import { SliderMediaItems } from "./SliderMediaItems";
 
 
-export const Card = ({ data }: ICardData): JSX.Element => {
+export const Card = ({ layout, media, title, description }: ICardData): JSX.Element => {
 
-    const { layout, content, media } = data
-    const { title, description } = content
     const { classes, wrapperStyle, mediaContainerStyle, contentStyle, titleStyle } = layout
-    const { data: mediaItems } = media.items
+    const { data: mediaItems } = media
 
     return (
         <section style={{ ...wrapperStyle }} className={`${classes} ${styles.card}`}>
@@ -32,3 +30,22 @@ export const Card = ({ data }: ICardData): JSX.Element => {
         </section>
     )
 }
+
+export const CardGroup = ({ data }: ICardListData) => {
+
+    const { title, cards } = data
+
+    return (
+        <section className={`${styles['card-group']} limited-width`}>
+            <h1 className="t-3 t-mdm t-lh-3">{title}</h1>
+            {
+                cards &&
+                cards.map( (item, i) => {
+                    return <Card {...item} key={i} />
+                })
+            }
+
+        </section>
+    )
+}
+
