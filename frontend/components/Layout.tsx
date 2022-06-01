@@ -1,7 +1,6 @@
 import Nav from '../components/Nav'
 import Logo from './Logo'
 import SeoHead from '../components/SeoHead'
-import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
 import { Layout } from '../types'
 
 
@@ -25,7 +24,7 @@ function Layout({
     const breadCrumbs = ['', 'ui-ux', 'çizim', 'blog']
 
     return (
-        <LazyMotion features={domAnimation}>
+        <>
 
             <SeoHead {...seoData} />
 
@@ -39,27 +38,18 @@ function Layout({
 
             </header>
 
-            <AnimatePresence
-                exitBeforeEnter
-                initial={false}
-                onExitComplete={() => window.scrollTo(0, 0)}
-            >
-                <m.main
+           
+                <main
                     key={`p${navIndex}`}
                     className={mainClass}
                     style={mainStyle}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.2 }}
                 >
                     {children}
-                </m.main>
-            </AnimatePresence>
-
+                </main>
+           
             <footer id="page-footer"></footer>
 
-        </LazyMotion>
+        </>
     )
 }
 
