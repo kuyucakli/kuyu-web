@@ -1,0 +1,98 @@
+.SectionIntro,  .SectionFeaturedNews, .SectionFeaturedNews *{
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+  }
+
+
+.JumboCover{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:auto;
+}
+
+
+.SectionIntro {
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    animation-name:anim-intro;
+    animation-duration: 1s;
+    animation-timing-function:ease-in;
+}
+
+@keyframes anim-intro{
+    0%{opacity:1}
+    10%{opacity:0; transform:translateY(100%) scale(0.95);}
+    100%{opacity:0; transform:translateY(100%)scale(0.95);}
+}
+
+
+
+.SectionFeaturedNews {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 16px;
+    margin-top: 48px;
+    animation-name:anim-featured;
+    animation-duration: 1s;
+}
+
+@keyframes anim-featured{
+    10%{opacity:1}
+    30%{opacity:1; transform:translateY(100%) scale(1);}
+    40%{opacity:1; transform:translateY(120%) scale(1);}
+    100%{opacity:1; transform:translateY(120%) scale(1);}
+}
+
+.SectionFeaturedNews>h1 {
+    grid-area: 1 / 9 / 1 / -1;
+}
+
+.SectionFeaturedNews>section {
+    grid-area: auto / 7 / auto / -1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    font-size: var(--t-s-6);
+    line-height: var(--t-lh-6);
+    letter-spacing: var(--t-ls-6);
+
+
+}
+
+.SectionFeaturedNews>section>figure {
+    grid-area: 1 / 1 / 1 / 3;
+}
+
+.SectionFeaturedNews img {
+    max-width: unset;
+    transform: translate(-25%, -10px);
+}
+
+.SectionFeaturedNews>section>div {
+    grid-area: 1 / 3 / 1 / -1;
+    position: relative;
+    opacity:0;
+    animation-name:anim-featured-text;
+    animation-duration: 1s;
+}
+
+@keyframes anim-featured-text{
+    10%{opacity:0}
+    20%{opacity:1; }
+    100%{opacity:1; }
+}
+
+@media screen and (min-width:768px) {
+
+    /* --- Home page --- */
+    .SectionIntro {
+        align-items: flex-end;
+    }
+
+    .SectionIntro>* {
+        width: calc(50% + 20px);
+    }
+}

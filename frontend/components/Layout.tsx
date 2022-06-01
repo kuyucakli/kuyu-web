@@ -9,7 +9,6 @@ function Layout({
     children,
     posts,
     post,
-    backgroundImage = '',
     navIndex = 0,
     seoData
 }: Layout): JSX.Element {
@@ -19,10 +18,11 @@ function Layout({
         return <>{children}</>
     }
 
-    const { zeroTopSpace, uiThemeAmbientColor } = post.pageTemplateSettings
-    const headerClass = `limited-width ${uiThemeAmbientColor}`
+    const { zeroTopSpace, uiThemeAmbientColor } = post.attributes.pageTemplateSettings
+    const headerClass = `${uiThemeAmbientColor}`
     const mainClass = `p${navIndex} ${zeroTopSpace ? 'zero-top-space' : ''} ${uiThemeAmbientColor}`
-    const mainStyle = { backgroundImage: backgroundImage !== '' ? `url(${backgroundImage})` : `none` }
+    const mainStyle = {  }
+    const breadCrumbs = ['', 'ui-ux', 'çizim', 'blog']
 
     return (
         <LazyMotion features={domAnimation}>
@@ -31,6 +31,7 @@ function Layout({
 
             <header id="page-header" className={headerClass} >
                 <Logo uiThemeAmbientColor={`${uiThemeAmbientColor}`} />
+                <p id="breadcrumbs">{breadCrumbs[navIndex]}</p>
                 <Nav
                     posts={{ ...posts }}
                     navIndex={navIndex}

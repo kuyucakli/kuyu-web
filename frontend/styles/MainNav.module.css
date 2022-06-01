@@ -4,18 +4,28 @@
 .main-nav {
   position: fixed;
   top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0);
+  right: 0;
+  background-color: var(--clr-dark-12);
   color: white;
-  animation: anim-main-nav-off 2s forwards reverse;
+  animation: anim-main-nav-off 0.3s forwards reverse ease-out;
+  border-bottom-left-radius: 8px;
+  box-shadow: 16px -16px 40px black;
+  --half-margin-md: calc((100vw - var(--limited-width-md)) / 2);
+  --half-margin-lg: calc((100vw - var(--limited-width-lg)) / 2);
+  --nav-height-sm:100vh;
+  --nav-height:auto;
+  --nav-bg-color:var(--clr-dark-12);
+  --nav-margin-left:0;
+  --nav-width-md:calc( var(--limited-width-md) + var(--half-margin-md) );
+  --nav-width-lg:calc(  var(--limited-width-lg) + var(--half-margin-lg)  );
+  --outer-swiper-w-md:calc(var(--limited-width-md) + var(--half-margin-md));
+  --outer-swiper-w-lg:calc(var(--limited-width-lg) + var(--half-margin-lg));
+  --slide-width-md:calc(( var(--limited-width-md) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+  --slide-width-lg:calc(( var(--limited-width-lg) - (11 * 16px)) / 12 * 9 + 8 * 11px);
 }
 
 .main-nav.on {
-  top: 0;
-  left: 0;
-  overflow-y: auto;
-  animation: anim-main-nav-on 2s forwards;
+  animation: anim-main-nav-on 0.3s forwards ease-out;
 }
 
 .main-nav h2 {
@@ -59,12 +69,9 @@
 }
 
 .main-nav .outer-swiper {
-  transition: transform 0.6s, opacity 0.4s;
-  transform: translate(0, 10%);
   position: absolute;
   height: 90vh;
   bottom: 0;
-  opacity: 0;
 }
 
 .main-nav [class=wrapper-slide-directional-buttons] {
@@ -72,11 +79,10 @@
 }
 
 .main-nav.on .outer-swiper {
-  transform: translate(0, 0);
   opacity: 1;
 }
 
-.main-nav .outer-swiper > div > div {
+.main-nav .outer-swiper>div>div {
   height: 50vh;
 }
 
@@ -102,19 +108,16 @@
 @keyframes anim-main-nav-on {
   0% {
     width: 100vw;
-    height: 100vh
+    height: var(--nav-height-sm);
   }
 
-  19% {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
 
   20% {}
 
   100% {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--nav-bg-color);
     width: 100vw;
-    height: 100vh;
+    height: var(--nav-height-sm);
 
   }
 }
@@ -132,27 +135,32 @@
   }
 
   90% {
-    background-color: rgba(0, 0, 0, 0);
     width: 100vw;
-    height: 100vh;
+    height: var(--nav-height-sm);
 
   }
 
   100% {
-    background-color: rgba(0, 0, 0, 0.8);
+   
     width: 100vw;
-    height: 100vh;
+    height: var(--nav-height-sm);
 
   }
 }
 
-
+/* --- Responsive --- */
 
 @media screen and (min-width:768px) {
 
   .main-nav {
     z-index: var(--z-main-nav);
+    width:var(--outer-swiper-w-md);
+    height:var(--nav-height);
+    padding:64px 0 64px 64px;
+    transform:translate(100%, -100%);
   }
+
+ 
 
   .main-nav h2 {
     padding: 0;
@@ -191,7 +199,7 @@
     margin-top: 8px;
   }
 
-  .main-nav  [class*="swiper-slide-active"] [class*="swiper-slide-active"] figcaption {
+  .main-nav [class*="swiper-slide-active"] [class*="swiper-slide-active"] figcaption {
     opacity: 1;
   }
 
@@ -210,7 +218,7 @@
     opacity: 1;
   }
 
-  .main-nav  [class*="swiper-slide-active"] [class=btn-next-item] {
+  .main-nav [class*="swiper-slide-active"] [class=btn-next-item] {
     width: 48px;
     height: 48px;
     z-index: 1000;
@@ -228,49 +236,42 @@
 
   .main-nav .outer-swiper {
     position: static;
-    --half-auto-margin: calc((100vw - 768px) / 2);
-    --scrollable-width: calc(768px + var(--half-auto-margin));
-    width: var(--scrollable-width);
+    width: var(--outer-swiper-w-md);
     height: unset;
     max-width: unset;
-    transform: translate(20%, 160px);
-
+    margin: 0;
   }
 
-  .main-nav.on .outer-swiper {
-    transform: translate(var(--half-auto-margin), 160px);
-  }
 
-  .main-nav .outer-swiper > div > div {
-    width: calc((768px - (11 * 16px)) / 12 * 9 + 8 * 11px);
+  .main-nav .outer-swiper>div>div {
+    width:var(--slide-width-md);
     height: calc(50vh + 56px);
 
   }
 
   .main-nav .inner-swiper {
-    width: calc((768px - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    width: var(--slide-width-md);
     height: 50vh;
 
   }
 
-  .main-nav .outer-swiper > div > div h2 {
+  .main-nav .outer-swiper>div>div h2 {
     opacity: 0.4;
-    transform: translateX(8%);
     transition: opacity 0.4s, transform 0.4s;
     margin-bottom: 8px;
   }
 
-  .main-nav .outer-swiper > div >  [class*="swiper-slide-active"] h2 {
+  .main-nav .outer-swiper>div>[class*="swiper-slide-active"] h2 {
     transform: translateX(0%);
     opacity: 1;
   }
 
-  .main-nav .outer-swiper > div > div figure {
+  .main-nav .outer-swiper>div>div figure {
     opacity: 0.6;
     transition: opacity 0.4s;
   }
 
-  .main-nav .outer-swiper > div >  [class*="swiper-slide-active"] figure {
+  .main-nav .outer-swiper>div>[class*="swiper-slide-active"] figure {
     opacity: 1;
   }
 
@@ -285,32 +286,62 @@
   }
 
 
+  @keyframes anim-main-nav-on {
+    0% {
+      transform:translate(100%, -100%);
+     
+    }
+
+    100% {
+      transform:translate(0, 0);
+
+    }
+  }
+
+  @keyframes anim-main-nav-off {
+    0% {
+     
+      transform:translate(100%, -100%);
+    }
+
+    19% {
+     
+    }
+
+    100% {
+      transform:translate(0, 0);
+
+    }
+  }
+
+  
+
+
 }
 
 
 
 
 @media screen and (min-width:1200px) {
+  .main-nav{
+    width:var(--nav-width-lg);
+  }
+
   .main-nav .outer-swiper {
-    --half-auto-margin: calc((100vw - var(--limit-width-1)) / 2);
-    --scrollable-width: calc(var(--limit-width-1) + var(--half-auto-margin));
-    width: var(--scrollable-width);
-    transform: translate(20%, 160px);
-
+  
+    width: var(--outer-swiper-w-lg);
+   
   }
 
-  .main-nav.on .outer-swiper {
-    transform: translate(var(--half-auto-margin), 160px);
-  }
 
-  .main-nav .outer-swiper > div > div {
-    width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+  .main-nav .outer-swiper>div>div {
+    width: var(--slide-width-lg);
     height: calc(50vh + 56px);
 
   }
 
   .main-nav .inner-swiper {
-    width: calc((var(--limit-width-1) - (11 * 16px)) / 12 * 9 + 8 * 11px);
+    width: calc((var(--limited-width-lg) - (11 * 16px)) / 12 * 9 + 8 * 11px);
     height: 50vh;
 
   }

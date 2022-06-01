@@ -1,23 +1,60 @@
 export interface IPost {
+    id: number
+    attributes: {
 
-    id?: number
-    title: string
-    slug: string
-    publishedAt: string
-    updatedAt: string
-    category: {}
-    blocks: []
-    seo: {}
-    pageTemplateSettings: {
-        zeroTopSpace: boolean
-        logoColor: string
-        uiThemeAmbientColor: string
-    }
-    cover: {
-        formats: {
-            thumbnail: {}
+        title: string
+        slug: string
+        publishedAt: string
+        updatedAt: string
+        category: {
+            data: {
+                id: number
+                attributes: {
+                    title: string
+                    slug: string
+                }
+            }
+        }
+        blocks: []
+        seo: {}
+        pageTemplateSettings: {
+            zeroTopSpace: boolean
+            logoColor: string
+            uiThemeAmbientColor: string
+        }
+        cover: {
+
+            data: IMediaBackend
+
+        }
+        places?: {
+            data: IPlace[]
         }
     }
+
+}
+
+export interface IPlace {
+    id: number
+    attributes: {
+        title: string
+        slug: string
+        description: string
+        cover: { data: IMediaBackend }
+        media: {}
+        location: location
+    }
+
+}
+
+export interface PlacesProps {
+    data: IPlace[]
+}
+
+
+type location = {
+    lat: number
+    lng: number
 }
 
 
@@ -35,7 +72,6 @@ export interface NavCategoricalList {
 
 export interface NavSection {
     items: IPost[]
-    linkBaseUrl: string
     slidesPerViewSm: number
     slidesPerViewLg: number
     showCaption?: boolean
@@ -43,6 +79,10 @@ export interface NavSection {
     handleMenuToggle: React.MouseEventHandler
     categoryTitle: string
     className?: string
+}
+
+export interface NavPrevNextPostProps {
+    posts: [IPost, IPost]
 }
 
 
@@ -81,6 +121,7 @@ export interface StaticDetailPageParams {
 
 export interface StaticDetailPageProps {
     post: IPost
+    prevNextPosts: [IPost, IPost]
 }
 
 export interface StaticDetailPageOutProps {
@@ -89,6 +130,7 @@ export interface StaticDetailPageOutProps {
         posts: NavCategoricalList
         seoData: {}
         navIndex: number
+        prevNextPosts: IPost[]
     }
 }
 
@@ -127,28 +169,34 @@ export interface HeroProps {
 
 }
 
+/* --- Media --- */
 
 export interface IMediaItems {
     items: IMediaItem[]
     style?: object
-    imgSize?:'large' | 'medium' | 'small' | 'raw'
+    imgSize?: 'large' | 'medium' | 'small' | 'raw'
 }
 
-export interface IMediaItem {
-    id: number
+
+
+interface IMediaFrontendExtra {
     style?: {}
-    imgSize:'large' | 'medium' | 'small' | 'raw'
+    imgSize: 'large' | 'medium' | 'small' | 'raw'
+}
+
+interface IMediaBackend {
+    id: number
     attributes: {
         caption: string
         alternativeText: string
-        url:string
-        width:number
-        height:number
+        url: string
+        width: number
+        height: number
         formats: {
             thumbnail: {
                 url: string
-                width:number
-                height:number
+                width: number
+                height: number
             },
             small: {
                 url: string,
@@ -169,28 +217,46 @@ export interface IMediaItem {
     }
 }
 
+export type IMediaItem = IMediaFrontendExtra & IMediaBackend
+
 
 
 export interface ICardData {
-        __component: string
-        layout: {
-            classes: string,
-            wrapperStyle: { [key: string]: string },
-            mediaContainerStyle: { [key: string]: string },
-            titleStyle: { [key: string]: string },
-            contentStyle: { [key: string]: string },
-        }     
-        title: string
-        description: string  
-        media: {
-                data: IMediaItem[]
-        }
+    __component: string
+    layout: {
+        classes: string,
+        wrapperStyle: { [key: string]: string },
+        mediaContainerStyle: { [key: string]: string },
+        titleStyle: { [key: string]: string },
+        contentStyle: { [key: string]: string },
+    }
+    title: string
+    description: string
+    media: {
+        data: IMediaItem[]
+    }
 }
 
 export interface ICardListData {
     data: {
-       title: string
-       cards: ICardData[]
+        title: string
+        cards: ICardData[]
     }
 }
+
+
+export interface INews {
+    id: Number
+    attributes: {
+        title: string
+        description: string
+        cover: {
+            data: IMediaBackend
+        }
+        linkTo: string
+    }
+}
+
+
+
 

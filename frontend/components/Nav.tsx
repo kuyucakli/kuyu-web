@@ -1,17 +1,17 @@
-import React, { useState, useRef, useEffect, RefObject } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatDateForRoute } from '../utils/date'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Keyboard, Mousewheel } from "swiper"
 import 'swiper/css/grid';
 import 'swiper/css'
-import { NavCategoricalList, NavSection, NavProps } from '../types'
+import { NavCategoricalList, NavSection, NavProps, IPost } from '../types'
 import { useSwiper } from 'swiper/react'
 import { getYearMonthDay } from '../utils/date'
 import useLockedBody from '../hooks/useLockedBody'
 import useOnClickOutside from '../hooks/useOnClickOutside'
 import styles from "/styles/MainNav.module.css"
+import { getPostUrl } from '../utils/getPostUrl'
 
 export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
 
@@ -85,7 +85,6 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                     <SwiperSlide>
                         <NavSection
                             items={posts.uiuxWorks}
-                            linkBaseUrl="/works"
                             slidesPerViewSm={1.1}
                             slidesPerViewLg={1}
                             handleMenuToggle={handleMenuToggle}
@@ -96,9 +95,8 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                     <SwiperSlide>
                         <NavSection
                             items={posts.illustrationWorks}
-                            linkBaseUrl="/works"
                             slidesPerViewSm={2.2}
-                            slidesPerViewLg={2.4}
+                            slidesPerViewLg={1}
                             lgDirection={"vertical"}
                             handleMenuToggle={handleMenuToggle}
                             categoryTitle="02 Çizim"
@@ -108,7 +106,6 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                     <SwiperSlide>
                         <NavSection
                             items={posts.blogPosts}
-                            linkBaseUrl="/blog"
                             slidesPerViewSm={1.1}
                             slidesPerViewLg={1}
                             handleMenuToggle={handleMenuToggle}
@@ -127,7 +124,6 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
 const NavSection = (
     {
         items,
-        linkBaseUrl,
         slidesPerViewSm = 1,
         slidesPerViewLg = 1,
         handleMenuToggle,
@@ -141,7 +137,7 @@ const NavSection = (
 
     return (
         <nav className={className}>
-            <h2 className="t-4 lg-t-3 t-bld">{categoryTitle}</h2>
+            <h2 className="t-4 lg-t-4 t-bld">{categoryTitle}</h2>
             <Swiper
                 preventInteractionOnTransition={true}
                 className={styles['inner-swiper']}
@@ -159,16 +155,16 @@ const NavSection = (
                 }}
             >
                 <SlideDirectionalButtons />
-                {items && items.map((item: any, id: number) => (
+                {items && items.map((item: IPost, id: number) => (
                     <SwiperSlide key={id}>
                         <figure>
-                            <Link href={`${linkBaseUrl}/${formatDateForRoute(item.attributes.publishedAt)}/${item.attributes.slug}`}>
+                            <Link href={getPostUrl(item)}>
                                 <a onClick={handleMenuToggle}>
-                                    <Image alt="" src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${item.attributes.cover.data.attributes.formats.medium.url}`} layout="fill" />
+                                    <Image alt="" src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${item.attributes.cover.data.attributes.formats.large.url}`} layout="fill" />
                                 </a>
                             </Link>
                             {showCaption &&
-                                <Figcaption linkBaseUrl={linkBaseUrl} item={item} onLinkClick={handleMenuToggle}/>
+                                <Figcaption url={getPostUrl(item)} item={item} onLinkClick={handleMenuToggle}/>
                             }
                         </figure>
                     </SwiperSlide>
@@ -179,12 +175,10 @@ const NavSection = (
 
 }
 
-const Figcaption = ({ linkBaseUrl, item, onLinkClick }: any) => {
-    const { publishedAt, title, tags, seo, slug } = item.attributes
+const Figcaption = ({ url, item, onLinkClick }: any) => {
+    const { title, tags, seo, slug } = item.attributes
     const { month, year } = getYearMonthDay(item.attributes.publishedAt)
-    const formattedDate = formatDateForRoute(publishedAt)
-    const url = `${linkBaseUrl}/${formattedDate}/${slug}`
-
+   
     const tagsArr = tags.data.map((item: any) => item.attributes.name)
     const tagsStr = tagsArr.join(', ')
     const metaInfo = `${month} ${year}`
@@ -247,13 +241,13 @@ function SlideDirectionalButtons() {
 
 export const getNavData = async (): Promise<NavCategoricalList> => {
 
-    const resIllustrationsWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=illustrasyon&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name`)
+    const resIllustrationsWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=illustrasyon&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataIllustrationWorks = await resIllustrationsWorks.json()
 
-    const resUiUxWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=ui-ux&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name`)
+    const resUiUxWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=ui-ux&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataUiUxWorks = await resUiUxWorks.json()
 
-    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name`)
+    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataBlogPosts = await resBlogPosts.json()
 
     return {

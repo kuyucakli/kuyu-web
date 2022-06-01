@@ -1,0 +1,26 @@
+.NavPrevNextPost{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+}
+
+.NavPrevNextPost::before{
+    content:'';
+    display:block;
+    width:120%;
+    height:1px;
+    border-radius: 8px;
+    background-color: var(--clr-dark-12);
+    position:absolute;
+    bottom:0;
+    right:0%;
+   
+}
+
+[class*=dark-ui] .NavPrevNextPost::before{
+    background-color: white;
+}
+
+.NavPrevNextPost span{
+    font-size:32px;
+}
