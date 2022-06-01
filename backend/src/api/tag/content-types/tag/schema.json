@@ -32,6 +32,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::new.new",
+      "mappedBy": "tags"
     }
   }
 }

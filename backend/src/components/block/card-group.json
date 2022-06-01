@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_block_card_groups",
+  "info": {
+    "displayName": "CardGroup",
+    "icon": "layer-group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.card",
+      "required": true,
+      "min": 1
+    }
+  }
+}

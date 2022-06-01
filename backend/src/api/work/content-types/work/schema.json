@@ -45,8 +45,9 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "block.card",
-        "block.hero"
+        "block.card-group",
+        "block.hero",
+        "shared.card"
       ]
     },
     "seo": {
