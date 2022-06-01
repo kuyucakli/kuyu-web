@@ -15,20 +15,20 @@ const Home: NextPage = ({ featuredNews, backgroundImage }: any) => {
   const weather = useWeather()
   const { width, height, url, alt } = backgroundImage
 
-  const scroll = useScroll({wait:0})
+  const scroll = useScroll({ wait: 0 })
 
   useEffect(() => {
     document.body.style.setProperty(
       '--scroll',
       `${window.scrollY / (document.body.offsetHeight - window.innerHeight)}`
-      );
+    );
   }, [scroll]);
 
-  
+
   return (
     <>
-     <Image className={styles.JumboCover} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt={alt} width={width}
-              height={height} layout="raw" priority />
+      <Image className={styles.JumboCover} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt={alt} width={width}
+        height={height} layout="raw" priority />
       <section className={`${styles.SectionIntro} limited-width`} itemScope itemType="http://schema.org/Article">
         <h1 className="t-1 t-bld">{`${weather.celcius}`}°C </h1>
         <p className="t-6 t-mdm">Bugün Kadıköy {`${weather.description}`}. Ben büyük olasılıkla kompüterimde ui-ux tasarlamakla, kodlamakla meşgulümdür. Değilse, bir yolculuk esnasında çizim yapıyorumdur.</p>
@@ -56,10 +56,10 @@ const FeaturedNew = (props: INews): JSX.Element => {
   return (
     <section >
       <figure>
-        
-            <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt="" width={width || 500}
-              height={height || 500} layout="raw" />
-         
+
+        <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt="" width={width || 500}
+          height={height || 500} layout="raw" />
+
       </figure>
       <div>
         <h2 className="t-4 t-mdm">
@@ -80,7 +80,7 @@ export async function getStaticProps() {
   const res = await fetch(`${process.env.BASE_URL_STRAPI_API}/home?populate=*`)
   const dataHomepage = await res.json()
   const { attributes } = dataHomepage.data
-  const{ seo, backgroundImage } =  attributes
+  const { seo, backgroundImage } = attributes
 
   const seoData = seo
   const posts = await getNavData();
@@ -93,7 +93,7 @@ export async function getStaticProps() {
     props: {
       post: dataHomepage.data,
       posts: posts,
-      backgroundImage:  backgroundImage.data.attributes,
+      backgroundImage: backgroundImage.data.attributes,
       seoData,
       featuredNews: dataFeatured.data
     },
