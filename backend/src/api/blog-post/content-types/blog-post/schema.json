@@ -54,9 +54,10 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "block.hero",
         "block.card-group",
-        "shared.card"
+        "block.hero",
+        "shared.card",
+        "shared.map"
       ]
     },
     "seo": {
@@ -70,6 +71,9 @@
       "repeatable": false,
       "component": "shared.page-template-settings",
       "required": true
+    },
+    "beginDate": {
+      "type": "date"
     }
   }
 }
