@@ -1,0 +1,23 @@
+[class*="dark-ui"] .SliderMediaItems nav[class*="directional"] button
+{
+
+color:white;
+
+}
+
+.SliderMediaItems nav[class*="directional"]{
+    position:absolute;
+    right:0;   
+    z-index:1;
+    transform:translate(0, -100%);
+    width:104px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SliderMediaItems figcaption{
+    text-align:right;
+    margin-right:128px;
+    text-decoration: underline;
+}
+
