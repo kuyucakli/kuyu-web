@@ -2,11 +2,12 @@ import { IMediaItems, IMediaItem } from "../types"
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useSwiper } from 'swiper/react';
+import styles from '../styles/SliderMediaItems.module.css'
 
 export const SliderMediaItems = ({ items, style, imgSize='medium' }: IMediaItems): JSX.Element => {
     
     return (
-        <div style={{ ...style }} >
+        <div className={styles.SliderMediaItems} style={{ ...style }} >
             {
                 items.length > 1 ?
                     (
@@ -39,10 +40,11 @@ function SlideButton() {
     const swiper = useSwiper();
 
     return (
-        <>
-            <button onClick={() => swiper.slideNext()}>Slide to the next slide</button>
-            <button onClick={() => swiper.slidePrev()}>Slide to the prev slide</button>
-        </>
+        <nav className="directional">
+            <button onClick={() => swiper.slidePrev()}>Önceki</button>
+            <button onClick={() => swiper.slideNext()}>Sonraki</button>
+           
+        </nav>
     );
 }
 
