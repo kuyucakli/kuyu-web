@@ -61,6 +61,8 @@
 
 }
 
+
+
 main.dark-ui {
   background-color: var(--clr-dark-13);
   color: white;
@@ -275,10 +277,17 @@ button {
   cursor: pointer;
 }
 
-[ class*="dark-ui"] .btn-main-nav,
-.btn-main-nav.on {
+[ class*="dark-ui"] .btn-main-nav
+ {
   color: White;
+}
 
+.btn-main-nav.on{
+  color:white;
+}
+
+[ class*="dark-ui"]:not(.p0) .btn-main-nav.on{
+  color: black;
 }
 
 .btn-main-nav {

@@ -1,9 +1,9 @@
 export interface IPost {
     id: number
     attributes: {
-
         title: string
         slug: string
+        beginDate: string
         publishedAt: string
         updatedAt: string
         category: {
@@ -49,6 +49,11 @@ export interface IPlace {
 
 export interface PlacesProps {
     data: IPlace[]
+    mapLayout:{ 
+        classes: string,
+        wrapperStyle: { [key: string]: string }
+        mapStyle:{[key: string]: string}
+    }
 }
 
 
@@ -139,16 +144,7 @@ export interface StaticDetailPagePaths {
     fallback: boolean
 }
 
-export interface CardProps {
-    media: {
-        formats: {
-            thumbnail: {}
-        }
-    }
-    title: string
-    content: string
 
-}
 
 export interface HeroProps {
     data: {
@@ -219,6 +215,8 @@ interface IMediaBackend {
 
 export type IMediaItem = IMediaFrontendExtra & IMediaBackend
 
+
+/* --- Card --- */
 
 
 export interface ICardData {

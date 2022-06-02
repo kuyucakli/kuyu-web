@@ -18,7 +18,7 @@ function Layout({
     }
 
     const { zeroTopSpace, uiThemeAmbientColor } = post.attributes.pageTemplateSettings
-    const headerClass = `${uiThemeAmbientColor}`
+    const headerClass = `p${navIndex} ${uiThemeAmbientColor}`
     const mainClass = `p${navIndex} ${zeroTopSpace ? 'zero-top-space' : ''} ${uiThemeAmbientColor}`
     const mainStyle = {  }
     const breadCrumbs = ['', 'ui-ux', 'çizim', 'blog']

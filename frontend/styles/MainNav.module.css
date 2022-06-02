@@ -1,6 +1,19 @@
 /* --- Main Nav --- */
 /* --- main-nav > outer-swiper > swiper-slide > nav > h2 + inner-swiper --- */
 
+
+
+[class*="dark-ui"]:not([class*="p0"]) .main-nav{
+  color:var(--clr-dark-12);
+  background-color: white;
+}
+
+[class*="dark-ui"]:not([class*="p0"]) .main-nav [class*="material-symbols"]{
+  color:var(--clr-dark-12);
+}
+
+
+
 .main-nav {
   position: fixed;
   top: 0;
@@ -23,6 +36,7 @@
   --slide-width-md:calc(( var(--limited-width-md) - (11 * 16px)) / 12 * 9 + 8 * 11px);
   --slide-width-lg:calc(( var(--limited-width-lg) - (11 * 16px)) / 12 * 9 + 8 * 11px);
 }
+
 
 .main-nav.on {
   animation: anim-main-nav-on 0.3s forwards ease-out;
@@ -115,7 +129,6 @@
   20% {}
 
   100% {
-    background-color: var(--nav-bg-color);
     width: 100vw;
     height: var(--nav-height-sm);
 

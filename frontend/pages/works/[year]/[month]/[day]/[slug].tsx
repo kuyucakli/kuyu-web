@@ -9,7 +9,7 @@ import NavPrevNextPost, { getPrevNextPost } from '../../../../../components/NavP
 function Post({ post, prevNextPosts }: StaticDetailPageProps) {
 
     const router = useRouter()
-
+   
     if (router.isFallback) {
         return <div>Loading...</div>
     }

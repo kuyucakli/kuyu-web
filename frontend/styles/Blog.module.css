@@ -1,0 +1,7 @@
+
+
+
+.BlogArticle > header > p{
+    
+    grid-area:1/3/1/span 8;
+}

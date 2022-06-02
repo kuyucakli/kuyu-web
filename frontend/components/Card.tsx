@@ -41,7 +41,7 @@ export const CardGroup = ({ data }: ICardListData) => {
             {
                 cards &&
                 cards.map( (item, i) => {
-                    return <Card {...item} key={i} />
+                    return <Card key={i} {...item}  />
                 })
             }
 

@@ -12,7 +12,7 @@ import { useScroll } from '../hooks/useScroll'
 
 const Home: NextPage = ({ featuredNews, backgroundImage }: any) => {
   const weather = useWeather()
-  const { width, height, url, alt } = backgroundImage
+  const { width, height, url, alternativeText } = backgroundImage
 
   const scroll = useScroll({ wait: 0 })
 
@@ -23,10 +23,9 @@ const Home: NextPage = ({ featuredNews, backgroundImage }: any) => {
     );
   }, [scroll]);
 
-
   return (
     <>
-      <Image className={styles.JumboCover} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt={alt} width={width}
+      <Image className={styles.JumboCover} src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt={alternativeText} width={width}
         height={height} layout="raw" priority />
       <section className={`${styles.SectionIntro} limited-width`} itemScope itemType="http://schema.org/Article">
         <h1 className="t-1 t-bld">{`${weather.celcius}`}°C </h1>
@@ -51,12 +50,13 @@ const Home: NextPage = ({ featuredNews, backgroundImage }: any) => {
 
 const FeaturedNew = (props: INews): JSX.Element => {
   const { title, description, cover, linkTo } = props.attributes
+  const { alternativeText } = cover.data.attributes
   const { url, width, height } = cover.data.attributes.formats.small // get raw file data
   return (
     <section >
       <figure>
 
-        <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt="" width={width || 500}
+        <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt={alternativeText} width={width || 500}
           height={height || 500} layout="raw" priority/>
 
       </figure>
