@@ -77,12 +77,14 @@
     opacity:0;
     animation-name:anim-featured-text;
     animation-duration: 1s;
+    align-self: center;
 }
 
 @keyframes anim-featured-text{
-    10%{opacity:0}
+    10%{opacity:0; transform:translateY(140px)}
     20%{opacity:1; }
-    100%{opacity:1; }
+    30%{opacity:1; transform:translateY(0)}
+    100%{opacity:1; transform:translateY(0)}
 }
 
 @media screen and (min-width:768px) {
