@@ -10,7 +10,7 @@ export function useWeather(){
         const getWeather = async () => {
     
           try {
-            const resp = await fetch('http://api.weatherapi.com/v1/current.json?key=e1e48c00ccb14ce08ac213143221805&q=istanbul&lang=tr&aqi=no')
+            const resp = await fetch('https://api.weatherapi.com/v1/current.json?key=e1e48c00ccb14ce08ac213143221805&q=istanbul&lang=tr&aqi=no')
             const data = await resp?.json()
             setWeather({
               celcius: data.current['temp_c'],
@@ -19,7 +19,7 @@ export function useWeather(){
           } catch (err) {
             setWeather({
               celcius: '23',
-              description: 'dada'
+              description: 'bulutlu'
             })
           }
     
