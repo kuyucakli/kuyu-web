@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_maps",
+  "info": {
+    "displayName": "Map",
+    "icon": "map"
+  },
+  "options": {},
+  "attributes": {
+    "layout": {
+      "type": "json",
+      "required": true
+    }
+  }
+}
