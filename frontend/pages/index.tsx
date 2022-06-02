@@ -4,7 +4,6 @@ import { getNavData } from '../components/Nav'
 import { useWeather } from '../hooks/useWeather'
 import ReactMarkdown from 'react-markdown'
 import Image from 'next/image'
-import Link from 'next/link'
 import { INews } from '../types'
 import styles from '/styles/Home.module.css'
 import { useScroll } from '../hooks/useScroll'
@@ -58,7 +57,7 @@ const FeaturedNew = (props: INews): JSX.Element => {
       <figure>
 
         <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${url}`} alt="" width={width || 500}
-          height={height || 500} layout="raw" />
+          height={height || 500} layout="raw" priority/>
 
       </figure>
       <div>
