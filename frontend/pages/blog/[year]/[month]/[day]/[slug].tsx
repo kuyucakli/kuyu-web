@@ -17,7 +17,7 @@ function Post({ post, prevNextPosts }: StaticDetailPageProps) {
 
     return (
         <>
-            <p>
+            <p className="t-6 t-bld limited-width">
                 {`${day} ${month}  ${year} `}
             </p>
             {
@@ -37,11 +37,8 @@ function Post({ post, prevNextPosts }: StaticDetailPageProps) {
 
             {
                 post.attributes.places &&
-                <Places data={post.attributes.places.data} />
+                <Places data={post.attributes.places.data}/>
             }
-
-
-
 
 
             <NavPrevNextPost posts={prevNextPosts} />
