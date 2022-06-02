@@ -60,6 +60,19 @@
       "relation": "manyToMany",
       "target": "api::blog-post.blog-post",
       "mappedBy": "places"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "block.hero",
+        "block.card-group",
+        "shared.card"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }
