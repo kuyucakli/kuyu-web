@@ -60,12 +60,10 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                     loopedSlides={3}
                     slidesPerView={"auto"}
                     loopPreventsSlide={true}
-                    shortSwipes={false}
                     mousewheel={{
                         forceToAxis: true,
                         releaseOnEdges: true
                     }}
-
                     keyboard={{
                         enabled: true,
                       }}
@@ -73,10 +71,12 @@ export default function Nav({ navIndex, posts }: NavProps): JSX.Element {
                     modules={[Mousewheel, Keyboard]}
                     direction="vertical"
                     className={styles['outer-swiper']}
+                    edgeSwipeDetection={'prevent'}
                     breakpoints={{
                         768: {
                             direction: 'horizontal',
                             spaceBetween: 16,
+                            shortSwipes:false
 
                         },
 
@@ -155,6 +155,7 @@ const NavSection = (
                 }}
             >
                 <SlideDirectionalButtons />
+                
                 {items && items.map((item: IPost, id: number) => (
                     <SwiperSlide key={id}>
                         <figure>
