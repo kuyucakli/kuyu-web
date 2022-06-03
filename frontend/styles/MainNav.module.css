@@ -3,14 +3,7 @@
 
 
 
-[class*="dark-ui"]:not([class*="p0"]) .main-nav{
-  color:var(--clr-dark-12);
-  background-color: white;
-}
 
-[class*="dark-ui"]:not([class*="p0"]) .main-nav [class*="material-symbols"]{
-  color:var(--clr-dark-12);
-}
 
 
 
@@ -84,7 +77,7 @@
 
 .main-nav .outer-swiper {
   position: absolute;
-  height: 90vh;
+  height: calc(100vh - 16px);
   bottom: 0;
 }
 
@@ -164,6 +157,15 @@
 /* --- Responsive --- */
 
 @media screen and (min-width:768px) {
+
+  [class*="dark-ui"]:not([class*="p0"]) .main-nav{
+    color:var(--clr-dark-12);
+    background-color: white;
+  }
+  
+  [class*="dark-ui"]:not([class*="p0"]) .main-nav [class*="material-symbols"]{
+    color:var(--clr-dark-12);
+  }
 
   .main-nav {
     z-index: var(--z-main-nav);

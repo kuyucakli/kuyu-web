@@ -178,6 +178,7 @@ h1 {
 
 body {
   font-family: var(--font-family-main);
+  overflow-x: hidden;
 }
 
 
@@ -286,9 +287,7 @@ button {
   color:white;
 }
 
-[ class*="dark-ui"]:not(.p0) .btn-main-nav.on{
-  color: black;
-}
+
 
 .btn-main-nav {
   padding-bottom: 2px;
@@ -318,6 +317,7 @@ button {
 
 .btn-main-nav .icon {
   font-size: 32px;
+  transform:translateY(4px);
 }
 
 .btn-main-nav span {
@@ -436,6 +436,13 @@ button {
     top: 36px;
   }
 
+  [ class*="dark-ui"]:not(.p0) .btn-main-nav.on{
+    color: black;
+  }
+
+  .btn-main-nav .icon {
+    transform:translateY(0);
+  }
  
 
 }
