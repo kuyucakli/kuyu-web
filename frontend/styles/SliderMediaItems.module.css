@@ -15,7 +15,7 @@ color:white;
     justify-content: space-between;
 }
 
-.SliderMediaItems figcaption{
+.SliderMediaItems  [class*=swiper]  figcaption{
     text-align:right;
     margin-right:128px;
     text-decoration: underline;

@@ -11,3 +11,12 @@ height:100%;
 [class*="dark-ui"] .PlacesContainer > div{
     color:var(--clr-dark-12)
 }
+
+
+
+@media screen and ( max-width:768px ){
+
+    .PlacesContainer *{
+        grid-area:auto / 1 / auto / span 12!important;
+    }
+}

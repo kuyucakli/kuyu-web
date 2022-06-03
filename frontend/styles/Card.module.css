@@ -56,6 +56,13 @@
 
 
 @media screen and ( max-width:768px ){
+
+    .card[class*=big-title] h1{
+        font-size:var(--t-s-2);
+        line-height:var(--t-lh-2);
+        letter-spacing:var(--t-ls-2); 
+    }
+
     .card *{
         grid-area:auto / 1 / auto / span 12!important;
     }
