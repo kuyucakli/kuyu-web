@@ -256,6 +256,8 @@ main {
   padding-bottom:128px;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-x:hidden;
+  position:relative;
 }
 
 
