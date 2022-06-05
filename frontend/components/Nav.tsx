@@ -178,7 +178,7 @@ const NavSection = (
 
 const Figcaption = ({ url, item, onLinkClick }: any) => {
     const { title, tags, seo, slug } = item.attributes
-    const { month, year } = getYearMonthDay(item.attributes.publishedAt)
+    const { month, year } = getYearMonthDay(item.attributes.beginDate)
    
     const tagsArr = tags.data.map((item: any) => item.attributes.name)
     const tagsStr = tagsArr.join(', ')
@@ -242,13 +242,13 @@ function SlideDirectionalButtons() {
 
 export const getNavData = async (): Promise<NavCategoricalList> => {
 
-    const resIllustrationsWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=illustrasyon&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
+    const resIllustrationsWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=illustrasyon&fields[0]=title&fields[1]=slug&fields[2]=publishedAt,beginDate&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataIllustrationWorks = await resIllustrationsWorks.json()
 
-    const resUiUxWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=ui-ux&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
+    const resUiUxWorks = await fetch(`${process.env.BASE_URL_STRAPI_API}/works?filters[category][slug]=ui-ux&fields[0]=title&fields[1]=slug&fields[2]=publishedAt,beginDate&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataUiUxWorks = await resUiUxWorks.json()
 
-    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&fields[2]=publishedAt&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
+    const resBlogPosts = await fetch(`${process.env.BASE_URL_STRAPI_API}/blog-posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&fields[2]=publishedAt,beginDate&populate[cover][fields][0]=formats&populate[seo][fields][0]=metaDescription&populate[tags][fields][0]=name&populate=category`)
     const dataBlogPosts = await resBlogPosts.json()
 
     return {
