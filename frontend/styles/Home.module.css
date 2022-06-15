@@ -1,4 +1,4 @@
-.SectionIntro,  .SectionFeaturedNews, .SectionFeaturedNews *{
+.SectionIntro,  .SectionFeaturedNews, .SectionContact, .SectionFeaturedNews *{
     animation-play-state: paused;
     animation-delay: calc(var(--scroll) * -1s);
     animation-iteration-count: 1;
@@ -87,6 +87,33 @@
     100%{opacity:1; transform:translateY(0)}
 }
 
+
+.SectionContact{
+    position:fixed;
+    right:64px;
+    bottom:64px;
+    animation-name:section-contact;
+    animation-duration: 1s;
+    opacity:0;
+    font-size: var(--t-s-6);
+    line-height: var(--t-lh-6);
+    letter-spacing: var(--t-ls-6);
+    
+}
+
+.SectionContact > *{
+   
+    grid-area: auto / 2 / auto / -1;
+}
+
+@keyframes section-contact{
+    0%{opacity:0; transform:translateY(140px)}
+    28%{opacity:0; transform:translateY(140px)}
+    38%{opacity:1; transform:translateY(0)}
+    100%{opacity:1; transform:translateY(0)}
+}
+
+
 @media screen and (min-width:768px) {
 
     .JumboCover{
@@ -124,5 +151,9 @@
         animation-name:anim-featured-text;
         animation-duration: 1s;
         align-self: center;
+    }
+
+    .SectionContact > *{
+        grid-area: auto / 9 / auto / -1;
     }
 }

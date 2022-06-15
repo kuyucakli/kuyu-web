@@ -43,6 +43,11 @@ const Home: NextPage = ({ featuredNews, backgroundImage }: any) => {
           )
         }
       </section>
+
+      <section className={`${styles.SectionContact} limited-width`}>
+        <h2 className="t-4 t-mdm">İletişim</h2>
+        <p>Freelance iş teklifleriniz için burak.kuyucakli et gmail adresine yazabilirsiniz.</p>
+      </section>
     </>
   )
 }
