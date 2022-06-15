@@ -10,4 +10,4 @@ Only the frontend folder is used for deplyoyment to server
 2. Clone repository (git clone https://github.com/burakk/kuyu-web.git website)
 3. Upload built .next folder
 4. In the frontend folder run npm install
-5. Restrat  pm2 restart frontend
+5. Restart  pm2 restart frontend
